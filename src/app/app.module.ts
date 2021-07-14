@@ -7,9 +7,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidenavComponent } from './sidenav/sidenav.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
