@@ -8,12 +8,15 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
+
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
