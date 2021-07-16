@@ -8,24 +8,24 @@ import { DoveService, Tower } from './dove.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  // Map of tower objects
-  dove: Tower[] = [];
+  // Array of tower objects
+  towers: Tower[] = [];
 
   // Array of towers to display
-  dislayed: Tower[] = [];
+  displayed: Tower[] = [];
 
   constructor(private doveService: DoveService) {}
 
   ngOnInit(): void {
     // Get Dove data
-    this.doveService.getDove().subscribe((dove: Tower[]) => {
+    this.doveService.getDove().subscribe((towers: Tower[]) => {
 
       // Create map of tower objects
-      this.dove = [...dove];
+      this.towers = [...towers];
     });
   }
 
   searchUpdate(towerIds: number[]) {
-    console.log(towerIds);
+    this.displayed = this.towers.filter(tower => towerIds.includes(tower.id));
   }
 }

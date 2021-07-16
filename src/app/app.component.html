@@ -1,6 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav>
-    <app-sidenav (searchUpdate)="searchUpdate($event)" [dove]="dove"></app-sidenav>
+    <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
     <p>
@@ -8,6 +8,6 @@
         Toggle sidenav
       </button>
     </p>
-    <app-map></app-map>
+    <app-map [towers]="displayed"></app-map>
   </mat-sidenav-content>
 </mat-sidenav-container>
