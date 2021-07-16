@@ -1,1 +1,8 @@
-<p>sidenav works!</p>
+<mat-form-field>
+  <mat-label>County:</mat-label>
+  <mat-select [(value)]="county" (selectionChange)="countyChange()">
+    <mat-option *ngFor="let county of counties" [value]="county">
+      {{county}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
