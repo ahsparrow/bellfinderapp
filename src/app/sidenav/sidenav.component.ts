@@ -14,26 +14,65 @@ export class SidenavComponent implements OnChanges {
   // Emit list of tower ids to be displayed
   @Output() searchUpdate = new EventEmitter<number[]>();
 
-  // List of all counties
-  counties: string[] = [];
+  countyList: string[] = [];
+  bellsList: number[] = [];
+  weightList: number[] = [0, 5, 10, 15, 20]
+  practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   // Selection values
+  name: string = "";
   county: string = "";
+  bells: number = 0;
+  weight: number = 0;
+  practice: string = "";
 
   ngOnChanges(): void {
-    // Make alphabetic list of unique counties
+    // Counties
     let countySet: Set<string> = new Set();
     for (const tower of this.towers)
       countySet.add(tower.county);
 
-    this.counties = [...countySet].sort();
+    this.countyList = [...countySet].sort();
+    this.countyList.unshift("");
+
+    if (!this.countyList.includes(this.county))
+      this.county = this.countyList[0];
+
+    // Number of bells
+    let bellSet: Set<number> = new Set();
+    for (const tower of this.towers)
+      bellSet.add(tower.bells);
+
+    this.bellsList = [...bellSet].sort((a, b) => a - b);
+
+    if (!this.bellsList.includes(this.bells))
+      this.bells = this.bellsList[0];
   }
 
-  countyChange() {
-    // Get towers matching selected county
-    let ids: number[] = this.towers
-      .filter(tower => tower.county === this.county)
-      .map(tower => tower.id);
-    this.searchUpdate.emit(ids);
+  selectionChange() {
+    let towers = [...this.towers];
+
+    // Filter on name
+    if (this.county !== "")
+      towers = towers.filter(tower => tower.name.toLowerCase().startsWith(this.name.toLowerCase()))
+
+    // Filter on county
+    if (this.county != "")
+      towers = towers.filter(tower => this.county === tower.county)
+
+    // Filter on number of bells
+    if (this.bells > this.bellsList[0])
+      towers = towers.filter(tower => tower.bells >= this.bells);
+
+    // Filter on weight
+    if (this.weight > 0)
+      towers = towers.filter(tower => (tower.weight / 112) >= this.weight);
+
+    this.searchUpdate.emit(towers.map(tower => tower.id));
+  }
+
+  clearName() {
+    this.name = "";
+    this.selectionChange();
   }
 }

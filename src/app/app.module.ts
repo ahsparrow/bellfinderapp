@@ -8,9 +8,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MapComponent } from './map/map.component';
@@ -33,9 +39,15 @@ import { MapComponent } from './map/map.component';
     }),
     BrowserAnimationsModule,
 
+    FormsModule,
     MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
     MatSelectModule,
-    MatSidenavModule
+    MatSidenavModule,
+    ReactiveFormsModule,
+
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
