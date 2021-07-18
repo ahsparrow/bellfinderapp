@@ -1,13 +1,14 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav>
-    <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <p>
-      <button type="button" mat-button (click)="sidenav.toggle()">
-        Toggle sidenav
-      </button>
-    </p>
-    <app-map [towers]="displayed"></app-map>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<div class="container" fxLayout="column" class="toplevel-container">
+  <mat-toolbar>
+    <span>Bellfinder</span>
+  </mat-toolbar>
+
+  <mat-sidenav-container fxFlex class="sidenav-container">
+    <mat-sidenav #sidenav mode="side">
+      <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-map [towers]="displayed"></app-map>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

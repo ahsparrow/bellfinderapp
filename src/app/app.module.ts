@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -45,6 +46,7 @@ import { MapComponent } from './map/map.component';
     MatInputModule,
     MatSelectModule,
     MatSidenavModule,
+    MatToolbarModule,
     ReactiveFormsModule,
 
     FlexLayoutModule
