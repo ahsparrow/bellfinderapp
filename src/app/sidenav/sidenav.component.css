@@ -1,3 +1,7 @@
-#searchdiv {
+.search-div {
   padding: 8px;
+}
+
+.search-form-field {
+  width: 200px;
 }
