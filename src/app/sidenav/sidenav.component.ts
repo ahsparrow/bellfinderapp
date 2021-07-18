@@ -16,6 +16,7 @@ export class SidenavComponent implements OnChanges {
 
   countyList: string[] = [];
   bellsList: number[] = [];
+  unringableList: string[] = ["Include", "Exclude"];
   weightList: number[] = [0, 5, 10, 15, 20]
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
@@ -23,6 +24,7 @@ export class SidenavComponent implements OnChanges {
   name: string = "";
   county: string = "";
   bells: number = 0;
+  unringable: string = "Exclude";
   weight: number = 0;
   practice: string = "";
 
