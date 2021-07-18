@@ -1,6 +1,10 @@
 <div class="container" fxLayout="column" class="toplevel-container">
   <mat-toolbar>
     <span>Bellfinder</span>
+    <span class="spacer"></span>
+   <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>search</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-sidenav-container fxFlex class="sidenav-container">
