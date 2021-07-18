@@ -53,7 +53,7 @@ export class SidenavComponent implements OnChanges {
     let towers = [...this.towers];
 
     // Filter on name
-    if (this.county !== "")
+    if (this.name !== "")
       towers = towers.filter(tower => tower.name.toLowerCase().startsWith(this.name.toLowerCase()))
 
     // Filter on county
