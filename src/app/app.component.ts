@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
 
       // Create map of tower objects
       this.towers = [...towers];
+      this.displayed = [...towers];
     });
   }
 
