@@ -22,12 +22,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MapComponent } from './map/map.component';
+import { TowersComponent } from './towers/towers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    MapComponent
+    MapComponent,
+    TowersComponent
   ],
   imports: [
     BrowserModule,
