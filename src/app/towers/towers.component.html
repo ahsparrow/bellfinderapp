@@ -1,1 +1,14 @@
-<p>towers works!</p>
+<div *ngFor="let tower of displayed" class="towerinfo" fxLayout>
+  <div class="towerbells">
+    {{tower.bells}}
+  </div>
+
+  <div fxFlex fxLayout="column">
+    <div fxFlex>
+      {{tower.place}}
+    </div>
+    <div fxFlex>
+      {{tower.county}}
+    </div>
+  </div>
+</div>

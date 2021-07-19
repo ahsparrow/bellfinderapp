@@ -15,8 +15,8 @@
       <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
     </mat-sidenav>
 
-    <mat-sidenav #towernav position="end" mode="side">
-      <app-towers></app-towers>
+    <mat-sidenav #towernav position="end" mode="side" class="towernav">
+      <app-towers [towers]="displayed"></app-towers>
     </mat-sidenav>
 
     <mat-sidenav-content>
