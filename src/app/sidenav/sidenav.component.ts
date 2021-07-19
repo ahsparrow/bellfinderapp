@@ -16,18 +16,19 @@ export class SidenavComponent implements OnChanges {
 
   countyList: string[] = [];
   bellsList: number[] = [];
-  unringableList: string[] = ["Include", "Exclude"];
+  unringableList: boolean[] = [false, true];
   weightList: number[] = [0, 5, 10, 15, 20]
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   // Selection values
-  name: string = "";
+  place: string = "";
   county: string = "";
   bells: number = 0;
-  unringable: string = "Exclude";
+  unringable: boolean = false;
   weight: number = 0;
   practice: string = "";
 
+  // Tower data is updated
   ngOnChanges(): void {
     // Counties
     let countySet: Set<string> = new Set();
@@ -49,14 +50,17 @@ export class SidenavComponent implements OnChanges {
 
     if (!this.bellsList.includes(this.bells))
       this.bells = this.bellsList[0];
+
+    this.update();
   }
 
-  selectionChange() {
+  // Update search parameters
+  update() {
     let towers = [...this.towers];
 
-    // Filter on name
-    if (this.name !== "")
-      towers = towers.filter(tower => tower.name.toLowerCase().startsWith(this.name.toLowerCase()))
+    // Filter on place
+    if (this.place !== "")
+      towers = towers.filter(tower => tower.place.toLowerCase().startsWith(this.place.toLowerCase()))
 
     // Filter on county
     if (this.county != "")
@@ -66,15 +70,24 @@ export class SidenavComponent implements OnChanges {
     if (this.bells > this.bellsList[0])
       towers = towers.filter(tower => tower.bells >= this.bells);
 
+    // Filter unringable
+    if (!this.unringable)
+      towers = towers.filter(tower => !tower.unringable);
+
     // Filter on weight
     if (this.weight > 0)
       towers = towers.filter(tower => (tower.weight / 112) >= this.weight);
 
+    // Filter on practice night
+    if (this.practice != "")
+      towers = towers.filter(tower => tower.practice.includes(this.practice));
+
     this.searchUpdate.emit(towers.map(tower => tower.id));
   }
 
-  clearName() {
-    this.name = "";
-    this.selectionChange();
+  // Function called from place select input
+  clearPlace() {
+    this.place = "";
+    this.update();
   }
 }

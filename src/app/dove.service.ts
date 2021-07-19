@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 export type Tower = {
   id: number;
-  name: string;
+  place: string;
   dedication: string;
   county: string;
   latitude: number;

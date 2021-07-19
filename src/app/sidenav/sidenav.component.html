@@ -1,9 +1,9 @@
 <div class="search-div" fxLayout="column">
   <!-- Place name -->
   <mat-form-field fxFlex class="search-row">
-    <mat-label>Search:</mat-label>
-    <input fxFlex matInput [(ngModel)]="name" (input)="selectionChange()" input="text">
-    <button fxFlex *ngIf="name" matSuffix mat-icon-button (click)="clearName()">
+    <mat-label>Place:</mat-label>
+    <input fxFlex matInput [(ngModel)]="place" (input)="update()" input="text">
+    <button fxFlex *ngIf="place" matSuffix mat-icon-button (click)="clearPlace()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
@@ -13,7 +13,7 @@
   <!-- County -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>County:</mat-label>
-    <mat-select [(ngModel)]="county" (selectionChange)="selectionChange()">
+    <mat-select [(ngModel)]="county" (selectionChange)="update()">
       <mat-option *ngFor="let county of countyList" [value]="county">
         {{county}}
       </mat-option>
@@ -24,18 +24,18 @@
   <div fxFlex fxLayout fxLayoutGap="8px" class="search-row">
     <mat-form-field fxFlex="0 0 60px">
       <mat-label>Bells:</mat-label>
-      <mat-select [(ngModel)]="bells" (selectionChange)="selectionChange()">
+      <mat-select [(ngModel)]="bells" (selectionChange)="update()">
         <mat-option *ngFor="let bells of bellsList" [value]="bells">
-          {{bells}}
+          {{bells}}+
         </mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field fxFlex="1 0 60px">
       <mat-label>Unringable:</mat-label>
-      <mat-select [(ngModel)]="unringable" (selectionChange)="selectionChange()">
+      <mat-select [(ngModel)]="unringable" (selectionChange)="update()">
         <mat-option *ngFor="let unringable of unringableList" [value]="unringable">
-          {{unringable}}
+          {{unringable ? "Include": "Exclude"}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -44,7 +44,7 @@
   <!-- Tenor weight -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Weight:</mat-label>
-    <mat-select [(ngModel)]="weight" (selectionChange)="selectionChange()">
+    <mat-select [(ngModel)]="weight" (selectionChange)="update()">
       <mat-option *ngFor="let weight of weightList" [value]="weight">
         {{(weight !== 0) ? '&gt; ' + weight + ' cwt' : ''}}
       </mat-option>
@@ -54,7 +54,7 @@
   <!-- Practice night -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Practice:</mat-label>
-    <mat-select [(ngModel)]="practice" (selectionChange)="selectionChange()">
+    <mat-select [(ngModel)]="practice" (selectionChange)="update()">
       <mat-option *ngFor="let practice of practiceList" [value]="practice">
         {{practice}}
       </mat-option>
