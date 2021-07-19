@@ -17,22 +17,30 @@ export class MapComponent implements AfterViewInit, OnChanges {
   towerIcons: Icon[] = []
   unringableIcon = icon({
     iconUrl: "assets/icons/tower_unringable.png",
-    iconSize: [31, 46],
-    iconAnchor: [16, 46]
+    shadowUrl: "assets/icons/tower_shadow.png",
+    iconSize: [27, 40],
+    iconAnchor: [14, 40],
+    shadowSize: [31, 21],
+    shadowAnchor: [4, 21]
   });
 
   map: LeafletMap | undefined;
   markers: MarkerClusterGroup = new MarkerClusterGroup({chunkedLoading: true});
 
   constructor() {
+    // Make array of icons
     for (let x of [3, 3, 3, 4, 5, 6, 8, 8, 10, 10, 12, 12]) {
       const url = `assets/icons/tower${x}.png`;
       this.towerIcons.push(
         icon({
           iconUrl: url,
-          iconSize: [31, 46],
-          iconAnchor: [16, 46]
-        }));
+          shadowUrl: "assets/icons/tower_shadow.png",
+          iconSize: [27, 40],
+          iconAnchor: [14, 40],
+          shadowSize: [31, 21],
+          shadowAnchor: [4, 21]
+        })
+      );
     }
   }
 
