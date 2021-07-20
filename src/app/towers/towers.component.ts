@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Tower } from '../dove.service';
 
 @Component({
@@ -10,10 +10,16 @@ export class TowersComponent implements OnChanges {
 
   @Input() towers: Tower[] = [];
 
+  @Output() clicked = new EventEmitter<Tower>();
+
   displayed: Tower[] = []
 
   ngOnChanges(): void {
     // Make big enough to show all the towers in Devon
     this.displayed = this.towers.slice(0, 500);
+  }
+
+  onClick(tower: Tower): void {
+    this.clicked.emit(tower);
   }
 }

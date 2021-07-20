@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatRippleModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -48,6 +49,7 @@ import { TowersComponent } from './towers/towers.component';
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
+    MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
     MatToolbarModule,

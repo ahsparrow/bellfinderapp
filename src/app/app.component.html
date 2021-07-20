@@ -10,17 +10,20 @@
     </button>
   </mat-toolbar>
 
+  <!-- Search side navigation -->
   <mat-sidenav-container fxFlex class="sidenav-container">
     <mat-sidenav #sidenav mode="side">
       <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
     </mat-sidenav>
 
+    <!-- Tower list side navigation -->
     <mat-sidenav #towernav position="end" mode="side" class="towernav">
-      <app-towers [towers]="displayed"></app-towers>
+      <app-towers (clicked)="selectTower($event)" [towers]="displayed"></app-towers>
     </mat-sidenav>
 
+    <!-- Map contents -->
     <mat-sidenav-content>
-      <app-map [towers]="displayed"></app-map>
+      <app-map [towers]="displayed" [selected]="selected"></app-map>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

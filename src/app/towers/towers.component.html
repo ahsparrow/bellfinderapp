@@ -1,4 +1,4 @@
-<div *ngFor="let tower of displayed" class="towerinfo" fxLayout>
+<div *ngFor="let tower of displayed" class="towerinfo" fxLayout matRipple (click)="onClick(tower)">
   <div class="towerbells">
     {{tower.bells}}
   </div>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges } from '@angular/core';
+import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { Icon, LayerGroup, Map as LeafletMap, icon, layerGroup, map, marker, tileLayer } from 'leaflet';
 import 'leaflet.markercluster';
@@ -13,6 +13,8 @@ import { Tower } from '../dove.service';
 export class MapComponent implements AfterViewInit, OnChanges {
 
   @Input() towers: Tower[] = [];
+
+  @Input() selected: Tower | undefined = undefined;
 
   towerIcons: Icon[] = []
   unringableIcon = icon({
@@ -58,20 +60,36 @@ export class MapComponent implements AfterViewInit, OnChanges {
     tiles.addTo(this.map);
 
     this.markers.addTo(this.map);
-    this.ngOnChanges();
+    this.updateMarkers();
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      if (propName === "towers") {
+        this.updateMarkers();
+      } else if (propName === "selected" && this.selected) {
+        this.selectTower(this.selected, 14);
+      }
+    }
+  }
+
+  updateMarkers() {
+    if (!this.map)
+      return;
+
+    this.markers.clearLayers();
+    const markers = this.towers.map(
+      tower => marker(
+        [tower.latitude, tower.longitude],
+        {icon: (tower.unringable) ?
+          this.unringableIcon :
+          this.towerIcons[Math.min(11, tower.bells) - 1]}));
+
+    this.markers.addLayers(markers);
+  }
+
+  selectTower(tower: Tower, zoom: number) {
     if (this.map)
-      this.markers.clearLayers();
-      const markers = this.towers.map(
-        tower => marker(
-          [tower.latitude, tower.longitude],
-          {icon: (tower.unringable) ?
-            this.unringableIcon :
-            this.towerIcons[Math.min(11, tower.bells) - 1]}));
-
-      this.markers.addLayers(markers);
+        this.map.setView([tower.latitude, tower.longitude], zoom);
   }
-
 }

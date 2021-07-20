@@ -14,6 +14,9 @@ export class AppComponent implements OnInit {
   // Array of towers to display
   displayed: Tower[] = [];
 
+  // Tower selected from tower list
+  selected: Tower | undefined = undefined;
+
   constructor(private doveService: DoveService) {}
 
   ngOnInit(): void {
@@ -28,5 +31,9 @@ export class AppComponent implements OnInit {
 
   searchUpdate(towerIds: number[]) {
     this.displayed = this.towers.filter(tower => towerIds.includes(tower.id));
+  }
+
+  selectTower(tower: Tower) {
+    this.selected = tower;
   }
 }
