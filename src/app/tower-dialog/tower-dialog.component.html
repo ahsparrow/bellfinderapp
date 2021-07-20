@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>{{tower.place}}</h2>
+
+<mat-dialog-content>
+  <div fxLayout fxLayoutGap="8px" gdColumns="auto auto">
+    <div fxFlex>Dedication:</div>
+    <div fxFlex>{{tower.dedication}}</div>
+
+    <div fxFlex>County:</div>
+    <div fxFlex>{{tower.county}}</div>
+
+    <div fxFlex>Bells:</div>
+    <div fxFlex>{{tower.bells}}</div>
+
+    <div fxFlex>Tenor:</div>
+    <div fxFlex>{{weight()}}</div>
+
+    <div fxFlex>Practice:</div>
+    <div fxFlex>{{tower.practice}}</div>
+  </div>
+
+  <div id="dove-link">
+    <a href="https://dove.cccbr.org.uk/detail.php?TowerBase={{tower.id}}"
+       target="_blank">
+      Open Dove's Guide
+    </a>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]>Close</button>
+</mat-dialog-actions>

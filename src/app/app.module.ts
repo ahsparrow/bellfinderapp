@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule,  } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -24,13 +25,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MapComponent } from './map/map.component';
 import { TowersComponent } from './towers/towers.component';
+import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     MapComponent,
-    TowersComponent
+    TowersComponent,
+    TowerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { TowersComponent } from './towers/towers.component';
 
     FormsModule,
     MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,

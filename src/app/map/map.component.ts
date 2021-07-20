@@ -1,7 +1,10 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+
+import { TowerDialogComponent } from '../tower-dialog/tower-dialog.component';
 
 // Custom marker to contain tower data
 class TowerMarker extends L.Marker {
@@ -38,7 +41,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   map: L.Map | undefined;
   markers: L.MarkerClusterGroup = new L.MarkerClusterGroup({chunkedLoading: true});
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
     // Make array of icons
     for (let x of [3, 3, 3, 4, 5, 6, 8, 8, 10, 10, 12, 12]) {
       const url = `assets/icons/tower${x}.png`;
@@ -97,7 +100,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
             this.towerIcons[Math.min(11, tower.bells) - 1],
           title: tower.place
         }
-      ).on('click', this.onClick)
+      ).on('click', this.onClick, this)
     );
 
     this.markers.addLayers(markers);
@@ -109,6 +112,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
   }
 
   onClick(event: any) {
-    console.log(event.target.tower);
+    this.dialog.open(TowerDialogComponent, {data: event.target.tower});
   }
 }
