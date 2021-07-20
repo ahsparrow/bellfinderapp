@@ -29,11 +29,11 @@ export class AppComponent implements OnInit {
     });
   }
 
-  searchUpdate(towerIds: number[]) {
+  searchUpdate(towerIds: number[]): void {
     this.displayed = this.towers.filter(tower => towerIds.includes(tower.id));
   }
 
-  selectTower(tower: Tower) {
+  selectTower(tower: Tower): void {
     this.selected = tower;
   }
 }

@@ -43,7 +43,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   constructor(public dialog: MatDialog) {
     // Make array of icons
-    for (let x of [3, 3, 3, 4, 5, 6, 8, 8, 10, 10, 12, 12]) {
+    for (const x of [3, 3, 3, 4, 5, 6, 8, 8, 10, 10, 12, 12]) {
       const url = `assets/icons/tower${x}.png`;
       this.towerIcons.push(
         L.icon({
@@ -75,7 +75,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     this.updateMarkers();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
       if (propName === "towers") {
         this.updateMarkers();
@@ -85,7 +85,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  updateMarkers() {
+  updateMarkers(): void {
     if (!this.map)
       return;
 
@@ -109,12 +109,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  selectTower(tower: Tower, zoom: number) {
+  selectTower(tower: Tower, zoom: number): void {
     if (this.map)
         this.map.setView([tower.latitude, tower.longitude], zoom);
   }
 
-  onClick(event: any) {
+  onClick(event: L.LeafletEvent): void {
     this.dialog.open(TowerDialogComponent, {data: event.target.tower});
   }
 }

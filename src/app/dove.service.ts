@@ -22,7 +22,7 @@ export class DoveService {
 
   constructor(private http: HttpClient) {}
 
-  getDove(): Observable<any> {
-    return this.http.get<any>('assets/dove.json');
+  getDove(): Observable<Tower[]> {
+    return this.http.get<Tower[]>('assets/dove.json');
   }
 }

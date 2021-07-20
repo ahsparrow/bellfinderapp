@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
-import { MatSelect} from '@angular/material/select';
 import { Tower } from '../dove.service';
 
 @Component({
@@ -21,17 +20,17 @@ export class SidenavComponent implements OnChanges {
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   // Selection values
-  place: string = "";
-  county: string = "";
-  bells: number = 0;
-  unringable: boolean = false;
-  weight: number = 0;
-  practice: string = "";
+  place = "";
+  county = "";
+  bells = 0;
+  unringable = false;
+  weight = 0;
+  practice = "";
 
   // Tower data is updated
   ngOnChanges(): void {
     // Counties
-    let countySet: Set<string> = new Set();
+    const countySet: Set<string> = new Set();
     for (const tower of this.towers)
       countySet.add(tower.county);
 
@@ -42,7 +41,7 @@ export class SidenavComponent implements OnChanges {
       this.county = this.countyList[0];
 
     // Number of bells
-    let bellSet: Set<number> = new Set();
+    const bellSet: Set<number> = new Set();
     for (const tower of this.towers)
       bellSet.add(tower.bells);
 
@@ -55,16 +54,17 @@ export class SidenavComponent implements OnChanges {
   }
 
   // Update search parameters
-  update() {
+  update(): void {
     let towers = [...this.towers];
 
     // Filter on place
     if (this.place !== "")
-      towers = towers.filter(tower => tower.place.toLowerCase().startsWith(this.place.toLowerCase()))
+      towers = towers.filter(tower =>
+        tower.place.toLowerCase().startsWith(this.place.toLowerCase()));
 
     // Filter on county
     if (this.county != "")
-      towers = towers.filter(tower => this.county === tower.county)
+      towers = towers.filter(tower => this.county === tower.county);
 
     // Filter on number of bells
     if (this.bells > this.bellsList[0])
@@ -86,7 +86,7 @@ export class SidenavComponent implements OnChanges {
   }
 
   // Function called from place select input
-  clearPlace() {
+  clearPlace(): void {
     this.place = "";
     this.update();
   }
