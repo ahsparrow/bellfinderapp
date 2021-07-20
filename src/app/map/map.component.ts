@@ -1,8 +1,17 @@
 import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
-import { Icon, LayerGroup, Map as LeafletMap, icon, layerGroup, map, marker, tileLayer } from 'leaflet';
+import * as L from 'leaflet';
 import 'leaflet.markercluster';
-import { MarkerClusterGroup } from 'leaflet';
+
+// Custom marker to contain tower data
+class TowerMarker extends L.Marker {
+  tower: Tower
+
+  constructor(latLng: L.LatLngExpression, tower: Tower, options?: L.MarkerOptions) {
+    super(latLng, options);
+    this.tower = tower;
+  }
+}
 
 import { Tower } from '../dove.service';
 @Component({
@@ -16,8 +25,8 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   @Input() selected: Tower | undefined = undefined;
 
-  towerIcons: Icon[] = []
-  unringableIcon = icon({
+  towerIcons: L.Icon[] = []
+  unringableIcon = L.icon({
     iconUrl: "assets/icons/tower_unringable.png",
     shadowUrl: "assets/icons/tower_shadow.png",
     iconSize: [27, 40],
@@ -26,15 +35,15 @@ export class MapComponent implements AfterViewInit, OnChanges {
     shadowAnchor: [4, 21]
   });
 
-  map: LeafletMap | undefined;
-  markers: MarkerClusterGroup = new MarkerClusterGroup({chunkedLoading: true});
+  map: L.Map | undefined;
+  markers: L.MarkerClusterGroup = new L.MarkerClusterGroup({chunkedLoading: true});
 
   constructor() {
     // Make array of icons
     for (let x of [3, 3, 3, 4, 5, 6, 8, 8, 10, 10, 12, 12]) {
       const url = `assets/icons/tower${x}.png`;
       this.towerIcons.push(
-        icon({
+        L.icon({
           iconUrl: url,
           shadowUrl: "assets/icons/tower_shadow.png",
           iconSize: [27, 40],
@@ -47,12 +56,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
   }
 
   ngAfterViewInit(): void {
-    this.map = map('map', {
+    this.map = L.map('map', {
       center: [ 52.0, 0.0 ],
       zoom: 10
     });
 
-    const tiles = tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       minZoom: 3,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -79,11 +88,17 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     this.markers.clearLayers();
     const markers = this.towers.map(
-      tower => marker(
+      tower => new TowerMarker(
         [tower.latitude, tower.longitude],
-        {icon: (tower.unringable) ?
-          this.unringableIcon :
-          this.towerIcons[Math.min(11, tower.bells) - 1]}));
+        tower,
+        {
+          icon: (tower.unringable) ?
+            this.unringableIcon :
+            this.towerIcons[Math.min(11, tower.bells) - 1],
+          title: tower.place
+        }
+      ).on('click', this.onClick)
+    );
 
     this.markers.addLayers(markers);
   }
@@ -91,5 +106,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
   selectTower(tower: Tower, zoom: number) {
     if (this.map)
         this.map.setView([tower.latitude, tower.longitude], zoom);
+  }
+
+  onClick(event: any) {
+    console.log(event.target.tower);
   }
 }
