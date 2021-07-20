@@ -1,14 +1,4 @@
-<div *ngFor="let tower of displayed" class="towerinfo" fxLayout matRipple (click)="onClick(tower)">
-  <div class="towerbells">
-    {{tower.bells}}
-  </div>
-
-  <div fxFlex fxLayout="column">
-    <div fxFlex>
-      {{tower.place}}
-    </div>
-    <div fxFlex>
-      {{tower.county}}
-    </div>
-  </div>
+<div *ngFor="let tower of displayed" class="towerinfo" matRipple (click)="onClick(tower)">
+  <div>{{tower.place}}</div>
+  <div>{{tower.bells}}, {{cwt(tower.weight)}}cwt</div>
 </div>

@@ -22,4 +22,8 @@ export class TowersComponent implements OnChanges {
   onClick(tower: Tower): void {
     this.clicked.emit(tower);
   }
+
+  cwt(lbs: number) {
+    return Math.floor(lbs / 112);
+  }
 }
