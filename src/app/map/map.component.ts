@@ -39,7 +39,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   });
 
   map: L.Map | undefined;
-  markers: L.MarkerClusterGroup = new L.MarkerClusterGroup({chunkedLoading: true});
+  markers: L.MarkerClusterGroup = new L.MarkerClusterGroup();
 
   constructor(public dialog: MatDialog) {
     // Make array of icons
@@ -89,7 +89,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     if (!this.map)
       return;
 
-    this.markers.clearLayers();
     const markers = this.towers.map(
       tower => new TowerMarker(
         [tower.latitude, tower.longitude],
@@ -103,7 +102,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
       ).on('click', this.onClick, this)
     );
 
-    this.markers.addLayers(markers);
+    this.markers.clearLayers();
+    if (markers.length !== 0) {
+      this.markers.addLayers(markers);
+      this.map.fitBounds(this.markers.getBounds().pad(0.05));
+    }
   }
 
   selectTower(tower: Tower, zoom: number) {
