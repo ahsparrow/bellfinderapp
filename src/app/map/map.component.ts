@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 import * as L from 'leaflet';
 import 'leaflet.markercluster';
+import 'leaflet-easybutton';
 
 import { TowerDialogComponent } from '../tower-dialog/tower-dialog.component';
 
@@ -73,6 +74,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     this.markers.addTo(this.map);
     this.updateMarkers();
+
+    L.easyButton(
+      '<i class="material-icons" style="font-size: 18px; vertical-align: middle">search</i>',
+      function() {alert('foobar')}
+    ).addTo(this.map);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
