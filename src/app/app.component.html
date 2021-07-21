@@ -18,7 +18,7 @@
 
     <!-- Tower list side navigation -->
     <mat-sidenav #towernav position="end" mode="side" class="towernav">
-      <app-towers (clicked)="selectTower($event)" [towers]="displayed"></app-towers>
+      <app-towers (selectTower)="selectTower($event)" [towers]="displayed"></app-towers>
     </mat-sidenav>
 
     <!-- Map contents -->

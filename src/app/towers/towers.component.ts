@@ -10,7 +10,7 @@ export class TowersComponent implements OnChanges {
 
   @Input() towers: Tower[] = [];
 
-  @Output() clicked = new EventEmitter<Tower>();
+  @Output() selectTower = new EventEmitter<Tower>();
 
   displayed: Tower[] = []
 
@@ -20,7 +20,7 @@ export class TowersComponent implements OnChanges {
   }
 
   onClick(tower: Tower): void {
-    this.clicked.emit(tower);
+    this.selectTower.emit(tower);
   }
 
   cwt(lbs: number) {
