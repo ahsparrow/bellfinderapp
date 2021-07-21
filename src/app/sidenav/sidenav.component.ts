@@ -11,13 +11,14 @@ export class SidenavComponent implements OnChanges {
   @Input() towers: Tower[] = [];
 
   // Emit list of tower ids to be displayed
-  @Output() searchUpdate = new EventEmitter<number[]>();
+  @Output() searchUpdateEvent = new EventEmitter<Tower[]>();
 
   countyList: string[] = [];
   bellsList: number[] = [];
   unringableList: boolean[] = [false, true];
   weightList: number[] = [0, 5, 10, 15, 20]
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  sortByList: string[] = ["Place", "Bells", "Weight"];
 
   // Selection values
   place = "";
@@ -26,6 +27,10 @@ export class SidenavComponent implements OnChanges {
   unringable = false;
   weight = 0;
   practice = "";
+
+  sortBy = "Place"
+  autozoom = true;
+  autoclose = false;
 
   // Tower data is updated
   ngOnChanges(): void {
@@ -50,11 +55,11 @@ export class SidenavComponent implements OnChanges {
     if (!this.bellsList.includes(this.bells))
       this.bells = this.bellsList[0];
 
-    this.update();
+    this.searchUpdate();
   }
 
   // Update search parameters
-  update(): void {
+  searchUpdate(): void {
     let towers = [...this.towers];
 
     // Filter on place
@@ -82,12 +87,28 @@ export class SidenavComponent implements OnChanges {
     if (this.practice != "")
       towers = towers.filter(tower => tower.practice.includes(this.practice));
 
-    this.searchUpdate.emit(towers.map(tower => tower.id));
+    const fn = (this.sortBy == 'Bells') ? this.sortByBells : (
+      (this.sortBy == 'Weight') ? this.sortByWeight : this.sortByPlace);
+    towers = towers.sort(fn);
+
+    this.searchUpdateEvent.emit(towers);
   }
 
   // Function called from place select input
   clearPlace(): void {
     this.place = "";
-    this.update();
+    this.searchUpdate();
+  }
+
+  sortByBells(a: Tower, b: Tower): number {
+    return (a.bells == b.bells) ? (b.weight - a.weight) : (b.bells - a.bells);
+  }
+
+  sortByWeight(a: Tower, b: Tower): number {
+    return b.weight - a.weight;
+  }
+
+  sortByPlace(a: Tower, b: Tower): number {
+    return (a.place == b.place) ? 0 : (a.place > b.place) ? 1 : -1;
   }
 }

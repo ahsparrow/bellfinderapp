@@ -33,8 +33,8 @@ export class AppComponent implements OnInit {
     });
   }
 
-  searchUpdate(towerIds: number[]): void {
-    this.displayed = this.towers.filter(tower => towerIds.includes(tower.id));
+  searchUpdate(towers: Tower[]): void {
+    this.displayed = towers;
   }
 
   selectTower(tower: Tower): void {

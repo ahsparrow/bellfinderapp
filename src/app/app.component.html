@@ -2,7 +2,7 @@
   <!-- Search side navigation -->
   <mat-sidenav-container fxFlex class="sidenav-container">
     <mat-sidenav [(opened)]="sidenavOpened" mode="side">
-      <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers">
+      <app-sidenav (searchUpdateEvent)="searchUpdate($event)" [towers]="towers">
       </app-sidenav>
     </mat-sidenav>
 

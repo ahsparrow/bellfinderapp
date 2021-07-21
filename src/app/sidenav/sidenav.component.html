@@ -2,7 +2,7 @@
   <!-- Place name -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Place:</mat-label>
-    <input fxFlex matInput [(ngModel)]="place" (input)="update()" input="text">
+    <input fxFlex matInput [(ngModel)]="place" (input)="searchUpdate()" input="text">
     <button fxFlex *ngIf="place" matSuffix mat-icon-button (click)="clearPlace()">
       <mat-icon>close</mat-icon>
     </button>
@@ -13,7 +13,7 @@
   <!-- County -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>County:</mat-label>
-    <mat-select [(ngModel)]="county" (selectionChange)="update()">
+    <mat-select [(ngModel)]="county" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let county of countyList" [value]="county">
         {{county}}
       </mat-option>
@@ -24,7 +24,7 @@
   <div fxFlex fxLayout fxLayoutGap="8px" class="search-row">
     <mat-form-field fxFlex="0 0 60px">
       <mat-label>Bells:</mat-label>
-      <mat-select [(ngModel)]="bells" (selectionChange)="update()">
+      <mat-select [(ngModel)]="bells" (selectionChange)="searchUpdate()">
         <mat-option *ngFor="let bells of bellsList" [value]="bells">
           {{bells}}+
         </mat-option>
@@ -33,7 +33,7 @@
 
     <mat-form-field fxFlex="1 0 60px">
       <mat-label>Unringable:</mat-label>
-      <mat-select [(ngModel)]="unringable" (selectionChange)="update()">
+      <mat-select [(ngModel)]="unringable" (selectionChange)="searchUpdate()">
         <mat-option *ngFor="let unringable of unringableList" [value]="unringable">
           {{unringable ? "Include": "Exclude"}}
         </mat-option>
@@ -44,7 +44,7 @@
   <!-- Tenor weight -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Weight:</mat-label>
-    <mat-select [(ngModel)]="weight" (selectionChange)="update()">
+    <mat-select [(ngModel)]="weight" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let weight of weightList" [value]="weight">
         {{(weight !== 0) ? '&gt; ' + weight + ' cwt' : ''}}
       </mat-option>
@@ -54,10 +54,31 @@
   <!-- Practice night -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Practice:</mat-label>
-    <mat-select [(ngModel)]="practice" (selectionChange)="update()">
+    <mat-select [(ngModel)]="practice" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let practice of practiceList" [value]="practice">
         {{practice}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <p class="mat-body-strong">Settings:</p>
+
+  <!-- Sort tower list -->
+  <mat-form-field fxFlex class="search-row">
+    <mat-label>Sort Tower List by:</mat-label>
+    <mat-select [(ngModel)]="sortBy" (selectionChange)="searchUpdate()">
+      <mat-option *ngFor="let sortBy of sortByList" [value]="sortBy">
+        {{sortBy}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="autozoom">
+    Auto zoom map
+  </mat-checkbox>
+
+  <mat-checkbox [(ngModel)]="autoclose">
+    Auto close tower list
+  </mat-checkbox>
+
 <div>
