@@ -17,6 +17,9 @@ export class AppComponent implements OnInit {
   // Tower selected from tower list
   selected: Tower | undefined = undefined;
 
+  // Bound sidenav opened state
+  sidenavOpened: boolean = false;
+
   constructor(private doveService: DoveService) {}
 
   ngOnInit(): void {
@@ -35,5 +38,9 @@ export class AppComponent implements OnInit {
 
   selectTower(tower: Tower): void {
     this.selected = tower;
+  }
+
+  mapButtonEvent(event: string): void {
+    this.sidenavOpened = !this.sidenavOpened;
   }
 }

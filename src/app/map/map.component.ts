@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import * as L from 'leaflet';
@@ -25,9 +25,14 @@ import { Tower } from '../dove.service';
 })
 export class MapComponent implements AfterViewInit, OnChanges {
 
+  // List of all towers
   @Input() towers: Tower[] = [];
 
+  // The selected tower
   @Input() selected: Tower | undefined = undefined;
+
+  // Button pressed event
+  @Output() buttonEvent = new EventEmitter<string>();
 
   towerIcons: L.Icon[] = []
   unringableIcon = L.icon({
@@ -77,7 +82,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     L.easyButton(
       '<i class="material-icons" style="font-size: 18px; vertical-align: middle">search</i>',
-      function() {alert('foobar')}
+      () => this.buttonEvent.emit("search")
     ).addTo(this.map);
   }
 

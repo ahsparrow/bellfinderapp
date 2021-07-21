@@ -12,18 +12,22 @@
 
   <!-- Search side navigation -->
   <mat-sidenav-container fxFlex class="sidenav-container">
-    <mat-sidenav #sidenav mode="side">
-      <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers"></app-sidenav>
+    <mat-sidenav [(opened)]="sidenavOpened" #sidenav mode="side">
+      <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers">
+      </app-sidenav>
     </mat-sidenav>
 
     <!-- Tower list side navigation -->
     <mat-sidenav #towernav position="end" mode="side" class="towernav">
-      <app-towers (selectTower)="selectTower($event)" [towers]="displayed"></app-towers>
+      <app-towers (selectTower)="selectTower($event)" [towers]="displayed">
+      </app-towers>
     </mat-sidenav>
 
     <!-- Map contents -->
     <mat-sidenav-content>
-      <app-map [towers]="displayed" [selected]="selected"></app-map>
+      <app-map [towers]="displayed" [selected]="selected"
+               (buttonEvent)="mapButtonEvent($event)">
+      </app-map>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
