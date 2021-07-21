@@ -1,24 +1,13 @@
 <div class="container" fxLayout="column" class="toplevel-container">
-  <mat-toolbar>
-   <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Bellfinder</span>
-    <span class="spacer"></span>
-   <button mat-icon-button (click)="towernav.toggle()">
-      <mat-icon>list</mat-icon>
-    </button>
-  </mat-toolbar>
-
   <!-- Search side navigation -->
   <mat-sidenav-container fxFlex class="sidenav-container">
-    <mat-sidenav [(opened)]="sidenavOpened" #sidenav mode="side">
+    <mat-sidenav [(opened)]="sidenavOpened" mode="side">
       <app-sidenav (searchUpdate)="searchUpdate($event)" [towers]="towers">
       </app-sidenav>
     </mat-sidenav>
 
     <!-- Tower list side navigation -->
-    <mat-sidenav #towernav position="end" mode="side" class="towernav">
+    <mat-sidenav [(opened)]="towersOpened" position="end" mode="side" class="towernav">
       <app-towers (selectTower)="selectTower($event)" [towers]="displayed">
       </app-towers>
     </mat-sidenav>

@@ -84,6 +84,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
       '<i class="material-icons" style="font-size: 18px; vertical-align: middle">search</i>',
       () => this.buttonEvent.emit("search")
     ).addTo(this.map);
+
+    L.easyButton(
+      '<i class="material-icons" style="font-size: 18px; vertical-align: middle">notifications</i>',
+      () => this.buttonEvent.emit("towers")
+    ).addTo(this.map);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

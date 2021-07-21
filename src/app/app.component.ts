@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
   // Tower selected from tower list
   selected: Tower | undefined = undefined;
 
-  // Bound sidenav opened state
+  // Bound sidenav opened states
   sidenavOpened: boolean = false;
+  towersOpened: boolean = false;
 
   constructor(private doveService: DoveService) {}
 
@@ -41,6 +42,10 @@ export class AppComponent implements OnInit {
   }
 
   mapButtonEvent(event: string): void {
-    this.sidenavOpened = !this.sidenavOpened;
+    if (event === "search")
+      this.sidenavOpened = !this.sidenavOpened;
+
+    if (event === "towers")
+      this.towersOpened = !this.towersOpened;
   }
 }
