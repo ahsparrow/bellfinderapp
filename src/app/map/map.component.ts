@@ -78,7 +78,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     tiles.addTo(this.map);
 
     this.markers.addTo(this.map);
-    this.updateMarkers();
 
     L.easyButton(
       '<i class="material-icons" style="font-size: 18px; vertical-align: middle">search</i>',
@@ -89,40 +88,62 @@ export class MapComponent implements AfterViewInit, OnChanges {
       '<i class="material-icons" style="font-size: 18px; vertical-align: middle">notifications</i>',
       () => this.buttonEvent.emit("towers")
     ).addTo(this.map);
+
+    this.map.on("moveend", () => this.moveEnd());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (propName === "towers") {
-        this.updateMarkers();
+      if (propName === "towers" && this.map) {
+        // Remove existing markers
+        this.markers.clearLayers();
+
+        // Zoom to fit all towers and load markers
+        this.map.fitBounds(this.towerBounds(this.towers));
+        this.loadMarkers();
+
       } else if (propName === "selected" && this.selected) {
         this.selectTower(this.selected, 14);
       }
     }
   }
 
-  updateMarkers(): void {
-    if (!this.map)
-      return;
-
-    const markers = this.towers.map(
-      tower => new TowerMarker(
-        [tower.latitude, tower.longitude],
-        tower,
-        {
-          icon: (tower.unringable) ?
-            this.unringableIcon :
-            this.towerIcons[Math.min(11, tower.bells) - 1],
-          title: tower.place
-        }
-      ).on('click', this.onClick, this)
-    );
-
+  // Map has finished moving/zooming
+  moveEnd(): void {
     this.markers.clearLayers();
-    if (markers.length !== 0) {
+    this.loadMarkers();
+  }
+
+  loadMarkers(): void {
+    const towers = this.visibleTowers();
+
+    if (towers.length < 500) {
+      const markers = towers.map(
+        tower => new TowerMarker(
+          [tower.latitude, tower.longitude],
+          tower,
+          {
+            icon: (tower.unringable) ?
+              this.unringableIcon :
+              this.towerIcons[Math.min(11, tower.bells) - 1],
+            title: tower.place
+          }
+        ).on('click', this.onClick, this)
+      );
+
       this.markers.addLayers(markers);
-      this.map.fitBounds(this.markers.getBounds().pad(0.05));
     }
+  }
+
+  visibleTowers(): Tower[] {
+    if (this.map) {
+      const bounds = this.map.getBounds();
+
+      const towers = this.towers.filter(t => bounds.contains([t.latitude, t.longitude]));
+      return towers;
+    }
+    else
+      return [];
   }
 
   selectTower(tower: Tower, zoom: number): void {
@@ -133,4 +154,23 @@ export class MapComponent implements AfterViewInit, OnChanges {
   onClick(event: L.LeafletEvent): void {
     this.dialog.open(TowerDialogComponent, {data: event.target.tower});
   }
+
+  // Return bounding box of towers
+  towerBounds(towers: Tower[]): L.LatLngBounds {
+    var maxLat = -90;
+    var minLat = 90;
+    var maxLon = -180;
+    var minLon = 180;
+
+    for (const tower of towers) {
+      maxLat = Math.max(maxLat, tower.latitude);
+      minLat = Math.min(minLat, tower.latitude);
+      maxLon = Math.max(maxLon, tower.longitude);
+      minLon = Math.min(minLon, tower.longitude);
+    }
+
+    return L.latLngBounds([minLat, minLon], [maxLat, maxLon]);
+  }
+
+
 }
