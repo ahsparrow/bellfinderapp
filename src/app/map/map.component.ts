@@ -95,12 +95,8 @@ export class MapComponent implements AfterViewInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
       if (propName === "towers" && this.map) {
-        // Remove existing markers
-        this.markers.clearLayers();
-
-        // Zoom to fit all towers and load markers
+        // Zoom to fit all towers
         this.map.fitBounds(this.towerBounds(this.towers));
-        this.loadMarkers();
 
       } else if (propName === "selected" && this.selected) {
         this.selectTower(this.selected, 14);

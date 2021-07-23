@@ -62,31 +62,12 @@ export class SidenavComponent implements OnChanges {
   searchUpdate(): void {
     let towers = [...this.towers];
 
-    // Filter on place
-    if (this.place !== "")
-      towers = towers.filter(tower =>
-        tower.place.toLowerCase().startsWith(this.place.toLowerCase()));
+    // Filter...
+    const filt = this.makeFilter(this.place, this.county, this.bells,
+                               this.unringable, this.weight, this.practice);
+    towers = towers.filter(filt);
 
-    // Filter on county
-    if (this.county != "")
-      towers = towers.filter(tower => this.county === tower.county);
-
-    // Filter on number of bells
-    if (this.bells > this.bellsList[0])
-      towers = towers.filter(tower => tower.bells >= this.bells);
-
-    // Filter unringable
-    if (!this.unringable)
-      towers = towers.filter(tower => !tower.unringable);
-
-    // Filter on weight
-    if (this.weight > 0)
-      towers = towers.filter(tower => (tower.weight / 112) >= this.weight);
-
-    // Filter on practice night
-    if (this.practice != "")
-      towers = towers.filter(tower => tower.practice.includes(this.practice));
-
+    // ...and sort
     const fn = (this.sortBy == 'Bells') ? this.sortByBells : (
       (this.sortBy == 'Weight') ? this.sortByWeight : this.sortByPlace);
     towers = towers.sort(fn);
@@ -110,5 +91,20 @@ export class SidenavComponent implements OnChanges {
 
   sortByPlace(a: Tower, b: Tower): number {
     return (a.place == b.place) ? 0 : (a.place > b.place) ? 1 : -1;
+  }
+
+  makeFilter(place: string, county: string, bells: number,
+             unringable: boolean, weight: number, practice: string) {
+    return function(tower: Tower) {
+
+      return (place === "" ||
+              tower.place.toLowerCase().startsWith(place.toLowerCase())) &&
+             (county === "" || county === tower.county) &&
+             (tower.bells >= bells) &&
+             (unringable || !tower.unringable) &&
+             (tower.weight >= weight * 112) &&
+             (practice === "" || tower.practice.includes(practice));;
+
+    }
   }
 }
