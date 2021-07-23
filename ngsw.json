@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1627025378735,
+  "timestamp": 1627071603895,
   "index": "/bellfinderapp/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/bellfinderapp/favicon.ico",
         "/bellfinderapp/index.html",
-        "/bellfinderapp/main.751b563d80fa11f0caf8.js",
+        "/bellfinderapp/main.fdfa5a05b3c6008ffef1.js",
         "/bellfinderapp/manifest.webmanifest",
         "/bellfinderapp/polyfills.252c5d1e855ec6174f8b.js",
         "/bellfinderapp/runtime.923c5bb1f44076d13245.js",
@@ -47,6 +47,7 @@
         "/bellfinderapp/assets/icons/tower8.png",
         "/bellfinderapp/assets/icons/tower_shadow.png",
         "/bellfinderapp/assets/icons/tower_unringable.png",
+        "/bellfinderapp/assets/images/zoomout.png",
         "/bellfinderapp/layers-2x.8f2c4d11474275fbc161.png",
         "/bellfinderapp/layers.416d91365b44e4b4f477.png",
         "/bellfinderapp/marker-icon.2b3e1faf89f94a483539.png"
@@ -74,11 +75,12 @@
     "/bellfinderapp/assets/icons/tower8.png": "858d5ff1dc6594103edebe105020737aa205edbd",
     "/bellfinderapp/assets/icons/tower_shadow.png": "457d0b89373d41abb82ea9c802811c200600478d",
     "/bellfinderapp/assets/icons/tower_unringable.png": "9a9fa4d460b8dc1e8b13147af5e610c3d417424c",
+    "/bellfinderapp/assets/images/zoomout.png": "bb74304326b301a0158254060dffb768748445d6",
     "/bellfinderapp/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/bellfinderapp/index.html": "f2a27c09c483e90177d6d567340187a4c76847bf",
+    "/bellfinderapp/index.html": "778dd58b485044bfcf74bd1f82e05e53ad1683ca",
     "/bellfinderapp/layers-2x.8f2c4d11474275fbc161.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/bellfinderapp/layers.416d91365b44e4b4f477.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
-    "/bellfinderapp/main.751b563d80fa11f0caf8.js": "eee8f4292781c4075de88f5a46b9aca6f83a262b",
+    "/bellfinderapp/main.fdfa5a05b3c6008ffef1.js": "674123171b5baf97f34cdcea6ec57b210884db63",
     "/bellfinderapp/manifest.webmanifest": "b87eae8b80fca090e752cbafce73e8da88683e14",
     "/bellfinderapp/marker-icon.2b3e1faf89f94a483539.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
     "/bellfinderapp/polyfills.252c5d1e855ec6174f8b.js": "48e1ef5df628b527fea3db1396dc34fd61ba3603",
