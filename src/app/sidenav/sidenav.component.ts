@@ -93,10 +93,11 @@ export class SidenavComponent implements OnChanges {
     return (a.place == b.place) ? 0 : (a.place > b.place) ? 1 : -1;
   }
 
+  // Create filter function
   makeFilter(place: string, county: string, bells: number,
              unringable: boolean, weight: number, practice: string) {
-    return function(tower: Tower) {
 
+    return function(tower: Tower) {
       return (place === "" ||
               tower.place.toLowerCase().startsWith(place.toLowerCase())) &&
              (county === "" || county === tower.county) &&
@@ -104,7 +105,6 @@ export class SidenavComponent implements OnChanges {
              (unringable || !tower.unringable) &&
              (tower.weight >= weight * 112) &&
              (practice === "" || tower.practice.includes(practice));;
-
     }
   }
 }

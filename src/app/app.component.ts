@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
 
   selectTower(tower: Tower): void {
     this.selected = tower;
+    this.towersOpened = false;
   }
 
   mapButtonEvent(event: string): void {
