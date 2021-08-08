@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit,
+         Output } from '@angular/core';
 import { Tower } from '../dove.service';
 
 export interface Settings {
@@ -38,6 +39,16 @@ export class SidenavComponent implements OnChanges {
   sortBy = "Place"
   autozoom = true;
   autoclose = false;
+
+  ngOnInit(): void {
+    const value = localStorage.getItem('settings');
+    if (typeof(value) === 'string') {
+      const settings = JSON.parse(value);
+      this.autoclose = settings.autoclose;
+
+      this.settingsEvent.emit(settings);
+    }
+  }
 
   // Tower data is updated
   ngOnChanges(): void {
@@ -116,7 +127,9 @@ export class SidenavComponent implements OnChanges {
   }
 
   settingsUpdate(): void {
-    this.settingsEvent.emit({autozoom: this.autozoom,
-                             autoclose: this.autoclose});
+    const settings = {autozoom: this.autozoom, autoclose: this.autoclose};
+
+    localStorage.setItem('settings', JSON.stringify(settings));
+    this.settingsEvent.emit(settings);
   }
 }
