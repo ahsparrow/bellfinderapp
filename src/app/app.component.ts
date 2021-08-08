@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DoveService, Tower } from './dove.service';
+import { Settings } from './sidenav/sidenav.component';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,8 @@ export class AppComponent implements OnInit {
 
   // Tower selected from tower list
   selected: Tower | undefined = undefined;
+
+  settings: Settings | undefined = undefined;
 
   // Bound sidenav opened states
   sidenavOpened: boolean = false;
@@ -37,9 +40,14 @@ export class AppComponent implements OnInit {
     this.displayed = towers;
   }
 
+  settingsUpdate(settings: Settings): void {
+    this.settings = settings;
+  }
+
   selectTower(tower: Tower): void {
     this.selected = tower;
-    this.towersOpened = false;
+    if (this.settings && this.settings.autoclose)
+      this.towersOpened = false;
   }
 
   mapButtonEvent(event: string): void {

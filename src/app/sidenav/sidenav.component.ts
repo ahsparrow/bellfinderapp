@@ -1,6 +1,11 @@
 import { Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { Tower } from '../dove.service';
 
+export interface Settings {
+  autozoom: boolean;
+  autoclose: boolean;
+}
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -12,6 +17,8 @@ export class SidenavComponent implements OnChanges {
 
   // Emit list of tower ids to be displayed
   @Output() searchUpdateEvent = new EventEmitter<Tower[]>();
+
+  @Output() settingsEvent = new EventEmitter<Settings>();
 
   countyList: string[] = [];
   bellsList: number[] = [];
@@ -106,5 +113,10 @@ export class SidenavComponent implements OnChanges {
              (tower.weight >= weight * 112) &&
              (practice === "" || tower.practice.includes(practice));;
     }
+  }
+
+  settingsUpdate(): void {
+    this.settingsEvent.emit({autozoom: this.autozoom,
+                             autoclose: this.autoclose});
   }
 }

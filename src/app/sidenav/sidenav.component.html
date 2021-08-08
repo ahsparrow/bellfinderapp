@@ -73,11 +73,11 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-checkbox [(ngModel)]="autozoom">
+  <mat-checkbox [(ngModel)]="autozoom" (change)="settingsUpdate()">
     Auto zoom map
   </mat-checkbox>
 
-  <mat-checkbox [(ngModel)]="autoclose">
+  <mat-checkbox [(ngModel)]="autoclose" (change)="settingsUpdate()">
     Auto close tower list
   </mat-checkbox>
 
