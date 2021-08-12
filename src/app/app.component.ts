@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DoveService, Tower } from './dove.service';
 import { Settings } from './sidenav/sidenav.component';
+import { TowerEvent } from './towers/towers.component';
 
 @Component({
   selector: 'app-root',
@@ -44,8 +45,11 @@ export class AppComponent implements OnInit {
     this.settings = settings;
   }
 
-  selectTower(tower: Tower): void {
-    this.selected = tower;
+  selectTower(towerEvent: TowerEvent): void {
+    this.selected = towerEvent.tower;
+    if (towerEvent.autoClose)
+      this.towersOpened = false;
+
     if (this.settings && this.settings.autoclose)
       this.towersOpened = false;
   }

@@ -1,4 +1,35 @@
-<div *ngFor="let tower of displayed" class="towerinfo" matRipple (click)="onClick(tower)">
-  <div>{{tower.place}}</div>
-  <div>{{tower.bells}}, {{cwt(tower.weight)}}cwt</div>
+<div fxLayout="column">
+  <div fxFlex>
+    <mat-expansion-panel class="towersettings">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Settings
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-form-field class="search-row">
+        <mat-label>Sort by:</mat-label>
+        <mat-select [(ngModel)]="sortBy" (selectionChange)="searchUpdate()">
+          <mat-option *ngFor="let sortBy of sortByList" [value]="sortBy">
+            {{sortBy}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-checkbox [(ngModel)]="showOnlyVisible" (change)="searchUpdate()">
+        List visible only
+      </mat-checkbox>
+
+      <mat-checkbox [(ngModel)]="autoClose" (change)="searchUpdate()">
+        Auto close
+      </mat-checkbox>
+    </mat-expansion-panel>
+  </div>
+
+  <div fxFlex>
+    <div *ngFor="let tower of displayed" class="towerinfo" matRipple (click)="onClick(tower)">
+      <div>{{tower.place}}</div>
+      <div>{{tower.bells}}, {{cwt(tower.weight)}}cwt</div>
+    </div>
+  </div>
 </div>
