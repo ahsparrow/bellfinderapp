@@ -8,15 +8,9 @@
       </app-sidenav>
     </mat-sidenav>
 
-    <!-- Tower list side navigation -->
-    <mat-sidenav [(opened)]="towersOpened" position="end" mode="side" class="towernav">
-      <app-towers (selectTower)="selectTower($event)" [towers]="displayed">
-      </app-towers>
-    </mat-sidenav>
-
     <!-- Map contents -->
     <mat-sidenav-content>
-      <app-map [towers]="displayed" [selected]="selected"
+      <app-map [towers]="displayed"
                (buttonEvent)="mapButtonEvent($event)">
       </app-map>
     </mat-sidenav-content>

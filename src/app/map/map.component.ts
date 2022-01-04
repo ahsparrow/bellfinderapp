@@ -84,11 +84,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
       () => this.buttonEvent.emit("search")
     ).addTo(this.map);
 
-    L.easyButton(
-      '<i class="material-icons" style="font-size: 18px; vertical-align: middle">notifications</i>',
-      () => this.buttonEvent.emit("towers")
-    ).addTo(this.map);
-
     this.map.on("moveend", () => this.moveEnd());
   }
 

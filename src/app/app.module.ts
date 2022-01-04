@@ -25,7 +25,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MapComponent } from './map/map.component';
-import { TowersComponent } from './towers/towers.component';
 import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
     AppComponent,
     SidenavComponent,
     MapComponent,
-    TowersComponent,
     TowerDialogComponent
   ],
   imports: [
