@@ -113,22 +113,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
   loadMarkers(): void {
     const towers = this.visibleTowers();
 
-    if (towers.length < 500) {
-      const markers = towers.map(
-        tower => new TowerMarker(
-          [tower.latitude, tower.longitude],
-          tower,
-          {
-            icon: (tower.unringable) ?
-              this.unringableIcon :
-              this.towerIcons[Math.min(11, tower.bells) - 1],
-            title: tower.place
-          }
-        ).on('click', this.onClick, this)
-      );
+    const markers = towers.map(
+      tower => new TowerMarker(
+        [tower.latitude, tower.longitude],
+        tower,
+        {
+          icon: (tower.unringable) ?
+            this.unringableIcon :
+            this.towerIcons[Math.min(11, tower.bells) - 1],
+          title: tower.place
+        }
+      ).on('click', this.onClick, this)
+    );
 
-      this.markers.addLayers(markers);
-    }
+    this.markers.addLayers(markers);
   }
 
   visibleTowers(): Tower[] {
