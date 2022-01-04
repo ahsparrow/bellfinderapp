@@ -12,7 +12,7 @@ export interface Settings {
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnChanges {
+export class SidenavComponent implements OnInit, OnChanges {
   // Array of tower information
   @Input() towers: Tower[] = [];
 
@@ -115,15 +115,15 @@ export class SidenavComponent implements OnChanges {
   makeFilter(place: string, county: string, bells: number,
              unringable: boolean, weight: number, practice: string) {
 
-    return function(tower: Tower) {
+    return function(tower: Tower): boolean {
       return (place === "" ||
               tower.place.toLowerCase().startsWith(place.toLowerCase())) &&
              (county === "" || county === tower.county) &&
              (tower.bells >= bells) &&
              (unringable || !tower.unringable) &&
              (tower.weight >= weight * 112) &&
-             (practice === "" || tower.practice.includes(practice));;
-    }
+             (practice === "" || tower.practice.includes(practice));
+    };
   }
 
   settingsUpdate(): void {

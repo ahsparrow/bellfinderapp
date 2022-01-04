@@ -146,10 +146,10 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   // Return bounding box of towers
   towerBounds(towers: Tower[]): L.LatLngBounds {
-    var maxLat = -90;
-    var minLat = 90;
-    var maxLon = -180;
-    var minLon = 180;
+    let maxLat = -90;
+    let minLat = 90;
+    let maxLon = -180;
+    let minLon = 180;
 
     for (const tower of towers) {
       maxLat = Math.max(maxLat, tower.latitude);

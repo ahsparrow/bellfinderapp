@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   settings: Settings | undefined = undefined;
 
   // Bound sidenav opened states
-  sidenavOpened: boolean = false;
+  sidenavOpened = false;
 
   constructor(private doveService: DoveService) {}
 
