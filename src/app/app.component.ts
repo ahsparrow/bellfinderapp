@@ -43,5 +43,16 @@ export class AppComponent implements OnInit {
   mapButtonEvent(event: string): void {
     if (event === "search")
       this.sidenavOpened = !this.sidenavOpened;
+
+    if (event === "location") {
+      if (navigator.geolocation)
+        navigator.geolocation.getCurrentPosition((position) => {
+          alert("position")
+        },
+        (error) => {
+          alert(error.message)
+        },
+        {timeout: 10000});
+    }
   }
 }
