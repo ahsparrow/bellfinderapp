@@ -1,11 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit,
          Output } from '@angular/core';
 import { Tower } from '../dove.service';
-
-export interface Settings {
-  autozoom: boolean;
-  autoclose: boolean;
-}
+import { SearchResult } from '../app.component';
 
 @Component({
   selector: 'app-sidenav',
@@ -17,16 +13,13 @@ export class SidenavComponent implements OnInit, OnChanges {
   @Input() towers: Tower[] = [];
 
   // Emit list of tower ids to be displayed
-  @Output() searchUpdateEvent = new EventEmitter<Tower[]>();
-
-  @Output() settingsEvent = new EventEmitter<Settings>();
+  @Output() searchEvent = new EventEmitter<SearchResult>();
 
   countyList: string[] = [];
   bellsList: number[] = [];
   unringableList: boolean[] = [false, true];
   weightList: number[] = [0, 5, 10, 15, 20]
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  sortByList: string[] = ["Place", "Bells", "Weight"];
 
   // Selection values
   place = "";
@@ -36,17 +29,12 @@ export class SidenavComponent implements OnInit, OnChanges {
   weight = 0;
   practice = "";
 
-  sortBy = "Place"
   autozoom = true;
-  autoclose = false;
 
   ngOnInit(): void {
     const value = localStorage.getItem('settings');
     if (typeof(value) === 'string') {
       const settings = JSON.parse(value);
-      this.autoclose = settings.autoclose;
-
-      this.settingsEvent.emit(settings);
     }
   }
 
@@ -85,30 +73,13 @@ export class SidenavComponent implements OnInit, OnChanges {
                                this.unringable, this.weight, this.practice);
     towers = towers.filter(filt);
 
-    // ...and sort
-    const fn = (this.sortBy == 'Bells') ? this.sortByBells : (
-      (this.sortBy == 'Weight') ? this.sortByWeight : this.sortByPlace);
-    towers = towers.sort(fn);
-
-    this.searchUpdateEvent.emit(towers);
+    this.searchEvent.emit({towers: towers, autozoom: this.autozoom});
   }
 
   // Function called from place select input
   clearPlace(): void {
     this.place = "";
     this.searchUpdate();
-  }
-
-  sortByBells(a: Tower, b: Tower): number {
-    return (a.bells == b.bells) ? (b.weight - a.weight) : (b.bells - a.bells);
-  }
-
-  sortByWeight(a: Tower, b: Tower): number {
-    return b.weight - a.weight;
-  }
-
-  sortByPlace(a: Tower, b: Tower): number {
-    return (a.place == b.place) ? 0 : (a.place > b.place) ? 1 : -1;
   }
 
   // Create filter function
@@ -124,12 +95,5 @@ export class SidenavComponent implements OnInit, OnChanges {
              (tower.weight >= weight * 112) &&
              (practice === "" || tower.practice.includes(practice));
     };
-  }
-
-  settingsUpdate(): void {
-    const settings = {autozoom: this.autozoom, autoclose: this.autoclose};
-
-    localStorage.setItem('settings', JSON.stringify(settings));
-    this.settingsEvent.emit(settings);
   }
 }

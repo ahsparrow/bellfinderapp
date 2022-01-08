@@ -5,6 +5,7 @@ import * as L from 'leaflet';
 import 'leaflet.markercluster';
 import 'leaflet-easybutton';
 
+import { SearchResult } from '../app.component';
 import { TowerDialogComponent } from '../tower-dialog/tower-dialog.component';
 
 // Custom marker to contain tower data
@@ -27,9 +28,9 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   // List of all towers
   @Input() towers: Tower[] = [];
+  @Input() searchResult: SearchResult = {towers: [], autozoom: false};
 
-  // The selected tower
-  @Input() selected: Tower | undefined = undefined;
+  @Input() position: GeolocationPosition | undefined = undefined;
 
   // Button pressed event
   @Output() buttonEvent = new EventEmitter<string>();
@@ -94,12 +95,20 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
-      if (propName === "towers" && this.map) {
-        // Zoom to fit all towers
-        this.map.fitBounds(this.towerBounds(this.towers));
-
-      } else if (propName === "selected" && this.selected) {
-        this.selectTower(this.selected, 14);
+      if (propName === "searchResult" && this.map) {
+        if (this.searchResult.autozoom) {
+          // Zoom to fit all towers
+          this.map.fitBounds(this.towerBounds(this.searchResult.towers));
+        } else {
+          // Refresh towers
+          this.moveEnd();
+        }
+      } else if (propName === "position") {
+        // Pan/zoom to own position
+        if (this.map && this.position)
+          this.map.setView([this.position.coords.latitude,
+                            this.position.coords.longitude],
+                           13);
       }
     }
   }
@@ -133,16 +142,11 @@ export class MapComponent implements AfterViewInit, OnChanges {
     if (this.map) {
       const bounds = this.map.getBounds();
 
-      const towers = this.towers.filter(t => bounds.contains([t.latitude, t.longitude]));
+      const towers = this.searchResult.towers.filter(t => bounds.contains([t.latitude, t.longitude]));
       return towers;
     }
     else
       return [];
-  }
-
-  selectTower(tower: Tower, zoom: number): void {
-    if (this.map)
-        this.map.setView([tower.latitude, tower.longitude], zoom);
   }
 
   onClick(event: L.LeafletEvent): void {
@@ -165,6 +169,4 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     return L.latLngBounds([minLat, minLon], [maxLat, maxLon]);
   }
-
-
 }

@@ -2,15 +2,14 @@
   <!-- Search side navigation -->
   <mat-sidenav-container fxFlex class="sidenav-container">
     <mat-sidenav [(opened)]="sidenavOpened" mode="over">
-      <app-sidenav (searchUpdateEvent)="searchUpdate($event)"
-                   (settingsEvent)="settingsUpdate($event)"
-                   [towers]="towers">
+      <app-sidenav [towers]="towers"
+                   (searchEvent)="searchEvent($event)">
       </app-sidenav>
     </mat-sidenav>
 
     <!-- Map contents -->
     <mat-sidenav-content>
-      <app-map [towers]="displayed"
+      <app-map [searchResult]="searchResult"
                (buttonEvent)="mapButtonEvent($event)">
       </app-map>
     </mat-sidenav-content>

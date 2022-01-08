@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DoveService, Tower } from './dove.service';
-import { Settings } from './sidenav/sidenav.component';
+
+export interface SearchResult {
+  towers: Tower[];
+  autozoom: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -12,12 +16,12 @@ export class AppComponent implements OnInit {
   // Array of tower objects
   towers: Tower[] = [];
 
-  // Array of towers to display
-  displayed: Tower[] = [];
+  searchResult: SearchResult = {towers: [], autozoom: false};
 
-  settings: Settings | undefined = undefined;
+  // Own position estimate
+  position: GeolocationPosition | undefined = undefined;
 
-  // Bound sidenav opened states
+  // Bound sidenav state
   sidenavOpened = false;
 
   constructor(private doveService: DoveService) {}
@@ -28,31 +32,27 @@ export class AppComponent implements OnInit {
 
       // Create map of tower objects
       this.towers = [...towers];
-      this.displayed = [...towers];
+      this.searchResult = {towers: [...towers], autozoom: true}
     });
   }
 
-  searchUpdate(towers: Tower[]): void {
-    this.displayed = towers;
-  }
-
-  settingsUpdate(settings: Settings): void {
-    this.settings = settings;
+  searchEvent(result: SearchResult): void {
+    this.searchResult = result;
   }
 
   mapButtonEvent(event: string): void {
     if (event === "search")
-      this.sidenavOpened = !this.sidenavOpened;
+      this.sidenavOpened = true;
 
     if (event === "location") {
       if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition((position) => {
-          alert("position")
+          this.position = position;
         },
         (error) => {
           alert(error.message)
         },
-        {timeout: 10000});
+        {timeout: 5000});
     }
   }
 }
