@@ -30,8 +30,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
   @Input() towers: Tower[] = [];
   @Input() searchResult: SearchResult = {towers: [], autozoom: false};
 
-  @Input() position: GeolocationPosition | undefined = undefined;
-
   // Button pressed event
   @Output() buttonEvent = new EventEmitter<string>();
 
@@ -81,12 +79,21 @@ export class MapComponent implements AfterViewInit, OnChanges {
     this.markers.addTo(this.map);
 
     L.easyButton(
-      '<i class="material-icons" style="font-size: 18px; vertical-align: middle">my_location</i>',
-      () => this.buttonEvent.emit("location")
+      '<i class="material-icons" style="vertical-align: middle">my_location</i>',
+      () => this.requestLocation()
     ).addTo(this.map);
 
     L.easyButton(
-      '<i class="material-icons" style="font-size: 18px; vertical-align: middle">search</i>',
+      '<i class="material-icons" style="vertical-align: middle">zoom_out_map</i>',
+      () => {
+        if (this.map) {
+          this.map.fitBounds(this.towerBounds(this.searchResult.towers))
+        }
+      }
+    ).addTo(this.map);
+
+    L.easyButton(
+      '<i class="material-icons" style="vertical-align: middle">search</i>',
       () => this.buttonEvent.emit("search")
     ).addTo(this.map);
 
@@ -103,12 +110,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
           // Refresh towers
           this.moveEnd();
         }
-      } else if (propName === "position") {
-        // Pan/zoom to own position
-        if (this.map && this.position)
-          this.map.setView([this.position.coords.latitude,
-                            this.position.coords.longitude],
-                           13);
       }
     }
   }
@@ -168,5 +169,22 @@ export class MapComponent implements AfterViewInit, OnChanges {
     }
 
     return L.latLngBounds([minLat, minLon], [maxLat, maxLon]);
+  }
+
+  requestLocation(): void {
+    if (navigator.geolocation)
+      navigator.geolocation.getCurrentPosition(
+        (position) => { this.setPosition(position) },
+        (error) => { alert(error.message) },
+        {timeout: 5000}
+      );
+  }
+
+  setPosition(position: GeolocationPosition): void {
+    if (this.map) {
+      this.map.setView([position.coords.latitude,
+                        position.coords.longitude],
+                       13);
+    }
   }
 }

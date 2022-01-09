@@ -18,9 +18,6 @@ export class AppComponent implements OnInit {
 
   searchResult: SearchResult = {towers: [], autozoom: false};
 
-  // Own position estimate
-  position: GeolocationPosition | undefined = undefined;
-
   // Bound sidenav state
   sidenavOpened = false;
 
@@ -43,16 +40,5 @@ export class AppComponent implements OnInit {
   mapButtonEvent(event: string): void {
     if (event === "search")
       this.sidenavOpened = true;
-
-    if (event === "location") {
-      if (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition((position) => {
-          this.position = position;
-        },
-        (error) => {
-          alert(error.message)
-        },
-        {timeout: 5000});
-    }
   }
 }
