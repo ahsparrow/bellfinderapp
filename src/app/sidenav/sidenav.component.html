@@ -1,4 +1,11 @@
 <div class="search-div" fxLayout="column">
+  <div fxFlex fxLayout="row" fxLayoutAlign="start baseline">
+    <p class="mat-h2" fxFlex="grow">Search</p>
+    <button fxFlex="none" mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
   <!-- Place name -->
   <mat-form-field fxFlex class="search-row">
     <mat-label>Place:</mat-label>

@@ -1,9 +1,10 @@
 <div class="container" fxLayout="column" class="toplevel-container">
   <!-- Search side navigation -->
-  <mat-sidenav-container fxFlex class="sidenav-container">
+  <mat-sidenav-container fxFlex class="sidenav-container" hasBackdrop="false">
     <mat-sidenav [(opened)]="sidenavOpened" mode="over">
       <app-sidenav [towers]="towers"
-                   (searchEvent)="searchEvent($event)">
+                   (searchEvent)="searchEvent($event)"
+                   (closeEvent)="closeEvent()">
       </app-sidenav>
     </mat-sidenav>
 

@@ -41,4 +41,8 @@ export class AppComponent implements OnInit {
     if (event === "search")
       this.sidenavOpened = true;
   }
+
+  closeEvent() {
+    this.sidenavOpened = false;
+  }
 }

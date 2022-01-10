@@ -15,6 +15,8 @@ export class SidenavComponent implements OnInit, OnChanges {
   // Emit list of tower ids to be displayed
   @Output() searchEvent = new EventEmitter<SearchResult>();
 
+  @Output() closeEvent = new EventEmitter<null>();
+
   countyList: string[] = [];
   bellsList: number[] = [];
   unringableList: boolean[] = [false, true];
@@ -95,5 +97,9 @@ export class SidenavComponent implements OnInit, OnChanges {
              (tower.weight >= weight * 112) &&
              (practice === "" || tower.practice.includes(practice));
     };
+  }
+
+  close() {
+    this.closeEvent.emit();
   }
 }
