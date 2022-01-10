@@ -8,6 +8,9 @@ import 'leaflet-easybutton';
 import { SearchResult } from '../app.component';
 import { TowerDialogComponent } from '../tower-dialog/tower-dialog.component';
 
+import { faCrosshairs, faExpandArrowsAlt, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+
 // Custom marker to contain tower data
 class TowerMarker extends L.Marker {
   tower: Tower
@@ -79,22 +82,25 @@ export class MapComponent implements AfterViewInit, OnChanges {
     this.markers.addTo(this.map);
 
     L.easyButton(
-      '<i class="material-icons" style="vertical-align: middle">my_location</i>',
-      () => this.requestLocation()
+      icon(faCrosshairs, {transform: {size: 20}}).html.join(''),
+      () => this.requestLocation(),
+      "Location"
     ).addTo(this.map);
 
     L.easyButton(
-      '<i class="material-icons" style="vertical-align: middle">zoom_out_map</i>',
+      icon(faExpandArrowsAlt, {transform: {size: 20}}).html.join(''),
       () => {
         if (this.map) {
           this.map.fitBounds(this.towerBounds(this.searchResult.towers))
         }
-      }
+      },
+      "Fit All"
     ).addTo(this.map);
 
     L.easyButton(
-      '<i class="material-icons" style="vertical-align: middle">search</i>',
-      () => this.buttonEvent.emit("search")
+      icon(faSearch, {transform: {size: 20}}).html.join(''),
+      () => this.buttonEvent.emit("search"),
+      "Search"
     ).addTo(this.map);
 
     this.map.on("moveend", () => this.moveEnd());

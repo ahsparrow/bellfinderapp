@@ -23,6 +23,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MapComponent } from './map/map.component';
 import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
@@ -47,6 +49,8 @@ import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
     BrowserAnimationsModule,
 
     FormsModule,
+    ReactiveFormsModule,
+
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
@@ -57,9 +61,10 @@ import { TowerDialogComponent } from './tower-dialog/tower-dialog.component';
     MatRippleModule,
     MatSelectModule,
     MatSidenavModule,
-    ReactiveFormsModule,
 
-    FlexLayoutModule
+    FlexLayoutModule,
+
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
