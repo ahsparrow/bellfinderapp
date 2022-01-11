@@ -34,10 +34,6 @@ export class SidenavComponent implements OnInit, OnChanges {
   autozoom = true;
 
   ngOnInit(): void {
-    const value = localStorage.getItem('settings');
-    if (typeof(value) === 'string') {
-      const settings = JSON.parse(value);
-    }
   }
 
   // Tower data is updated
