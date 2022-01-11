@@ -13,7 +13,7 @@ import { icon } from '@fortawesome/fontawesome-svg-core';
 
 // Custom marker to contain tower data
 class TowerMarker extends L.Marker {
-  tower: Tower
+  tower: Tower;
 
   constructor(latLng: L.LatLngExpression, tower: Tower, options?: L.MarkerOptions) {
     super(latLng, options);
@@ -36,7 +36,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
   // Button pressed event
   @Output() buttonEvent = new EventEmitter<string>();
 
-  towerIcons: L.Icon[] = []
+  towerIcons: L.Icon[] = [];
   unringableIcon = L.icon({
     iconUrl: "assets/icons/tower_unringable.png",
     shadowUrl: "assets/icons/tower_shadow.png",
@@ -85,7 +85,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
       icon(faExpandArrowsAlt, {transform: {size: 20}}).html.join(''),
       () => {
         if (this.map) {
-          this.map.fitBounds(this.towerBounds(this.searchResult.towers))
+          this.map.fitBounds(this.towerBounds(this.searchResult.towers));
         }
       },
       "Fit All"
@@ -180,8 +180,8 @@ export class MapComponent implements AfterViewInit, OnChanges {
   requestLocation(): void {
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
-        (position) => { this.setPosition(position) },
-        (error) => { alert(error.message) },
+        (position) => { this.setPosition(position); },
+        (error) => { alert(error.message); },
         {timeout: 5000}
       );
   }

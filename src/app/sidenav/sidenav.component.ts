@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit,
+import { Component, EventEmitter, Input, OnChanges,
          Output } from '@angular/core';
 import { Tower } from '../dove.service';
 import { SearchResult } from '../app.component';
@@ -8,7 +8,7 @@ import { SearchResult } from '../app.component';
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css']
 })
-export class SidenavComponent implements OnInit, OnChanges {
+export class SidenavComponent implements OnChanges {
   // Array of tower information
   @Input() towers: Tower[] = [];
 
@@ -20,7 +20,7 @@ export class SidenavComponent implements OnInit, OnChanges {
   countyList: string[] = [];
   bellsList: number[] = [];
   unringableList: boolean[] = [false, true];
-  weightList: number[] = [0, 5, 10, 15, 20]
+  weightList: number[] = [0, 5, 10, 15, 20];
   practiceList: string[] = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   // Selection values
@@ -32,9 +32,6 @@ export class SidenavComponent implements OnInit, OnChanges {
   practice = "";
 
   autozoom = true;
-
-  ngOnInit(): void {
-  }
 
   // Tower data is updated
   ngOnChanges(): void {

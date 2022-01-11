@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
       // Create map of tower objects
       this.towers = [...towers];
-      this.searchResult = {towers: [...towers], autozoom: true}
+      this.searchResult = {towers: [...towers], autozoom: true};
     });
   }
 
