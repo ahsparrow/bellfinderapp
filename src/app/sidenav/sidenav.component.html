@@ -1,6 +1,6 @@
 <div class="search-div" fxLayout="column">
   <div fxFlex fxLayout="row" fxLayoutAlign="start baseline">
-    <p class="mat-h2" fxFlex="grow">Search</p>
+    <h2 fxFlex="grow">Search</h2>
     <button fxFlex="none" mat-icon-button (click)="close()">
       <mat-icon>close</mat-icon>
     </button>
@@ -14,8 +14,6 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-
-  <p class="mat-body-strong">Filter By:</p>
 
   <!-- County -->
   <mat-form-field fxFlex class="search-row">
@@ -68,10 +66,12 @@
     </mat-select>
   </mat-form-field>
 
-  <p class="mat-body-strong">Settings:</p>
+  <button fxFlex class="clear-button" mat-raised-button color="primary" (click)="clearAll()">Clear All</button>
 
-  <mat-checkbox [(ngModel)]="autozoom" (change)="searchUpdate()">
-    Auto zoom map
+  <h3 fxFlex>Settings:</h3>
+
+  <mat-checkbox fxFlex [(ngModel)]="autozoom" (change)="searchUpdate()">
+    Auto zoom
   </mat-checkbox>
 
 <div>

@@ -102,4 +102,15 @@ export class SidenavComponent implements OnInit, OnChanges {
   close() {
     this.closeEvent.emit();
   }
+
+  clearAll() {
+    this.place = "";
+    this.county = "";
+    this.bells = this.bellsList[0];
+    this.unringable = false;
+    this.weight = 0;
+    this.practice = "";
+
+    this.searchUpdate();
+  }
 }
