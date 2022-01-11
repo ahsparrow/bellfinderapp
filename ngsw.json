@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1641897631133,
+  "timestamp": 1641898028180,
   "index": "/bellfinderapp/index.html",
   "assetGroups": [
     {
@@ -75,7 +75,7 @@
     "/bellfinderapp/layers-2x.9859cd1231006a4a.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/bellfinderapp/layers.ef6db8722c2c3f9a.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
     "/bellfinderapp/main.7fecd6634a76a8b5.js": "62268af6a8dbc5e257aa0145f9e0386e444ac3b6",
-    "/bellfinderapp/manifest.webmanifest": "6bd8397260dd4d05771076ad664d1cbe6040599e",
+    "/bellfinderapp/manifest.webmanifest": "3827244d03507798fd1d6b99ec744e4bb26b2b0d",
     "/bellfinderapp/marker-icon.d577052aa271e13f.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
     "/bellfinderapp/polyfills.867fc05a361a1a12.js": "14c16218439284ea77d85b071eb23a142c0ee4ef",
     "/bellfinderapp/runtime.c33839c3a250e0bf.js": "5a0c581715c709b84cac5639cf122e8f991393b9",
