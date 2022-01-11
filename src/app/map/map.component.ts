@@ -82,12 +82,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     this.markers.addTo(this.map);
 
     L.easyButton(
-      icon(faCrosshairs, {transform: {size: 20}}).html.join(''),
-      () => this.requestLocation(),
-      "Location"
-    ).addTo(this.map);
-
-    L.easyButton(
       icon(faExpandArrowsAlt, {transform: {size: 20}}).html.join(''),
       () => {
         if (this.map) {
@@ -95,6 +89,12 @@ export class MapComponent implements AfterViewInit, OnChanges {
         }
       },
       "Fit All"
+    ).addTo(this.map);
+
+    L.easyButton(
+      icon(faCrosshairs, {transform: {size: 20}}).html.join(''),
+      () => this.requestLocation(),
+      "Location"
     ).addTo(this.map);
 
     L.easyButton(
