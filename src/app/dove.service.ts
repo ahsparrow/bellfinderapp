@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export type Tower = {
-  id: number;
+  towerId: number;
   place: string;
   dedication: string;
   county: string;
