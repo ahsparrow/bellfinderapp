@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1642089546062,
+  "timestamp": 1642156762921,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -56,13 +56,13 @@
   "dataGroups": [],
   "hashTable": {
     "/assets/dove.json": "94c21bf683fa018dd5beef236438da90ddaac905",
-    "/assets/icons/icon-128x128.png": "44260422127144fbaa797094899fe1679fc97291",
+    "/assets/icons/icon-128x128.png": "eccb6dc71f9d4907526355ae335b2042491aea86",
     "/assets/icons/icon-144x144.png": "385fc53a87dfd9b7e0eae7d4f176a63e3a49390e",
-    "/assets/icons/icon-192x192.png": "16efdbf55c8bb1439e27ac8ff7a25abf1a46ff9d",
-    "/assets/icons/icon-384x384.png": "6b540d33eb538bae6f148c8e7b69b76a51db2e45",
-    "/assets/icons/icon-512x512.png": "9b23b40932e4c773debb5ef69d2a8be3ce917cb0",
-    "/assets/icons/icon-72x72.png": "c4b43ee3315eabe82abce0216b292bc09c1ebced",
-    "/assets/icons/icon-96x96.png": "f3b0097b0ab1c7fe543f05f305a399f8ff5cece5",
+    "/assets/icons/icon-192x192.png": "58915250fd10b282392842feab1bc8b98b0b7f46",
+    "/assets/icons/icon-384x384.png": "8528eee46181dbb4305da3012814edcc028f7d32",
+    "/assets/icons/icon-512x512.png": "f8d88947a4de3998dd8dccebdb2f892ce925bf06",
+    "/assets/icons/icon-72x72.png": "d09a07efa7afbb380cd0c37fe8d7a125e7de8d62",
+    "/assets/icons/icon-96x96.png": "6c37e40d9415822ae4ef589c7aeb54b6ad70f3cc",
     "/assets/icons/tower10.png": "e294780d0d6ac0b49422a8ac5918e1062703e4a1",
     "/assets/icons/tower12.png": "b6aa47789c21d3d174eb6a17145c9f24f2d92291",
     "/assets/icons/tower3.png": "7859ddbd3191d2f8b5a4b6f47d3ff8f5fe5ff119",
@@ -77,7 +77,7 @@
     "/layers-2x.9859cd1231006a4a.png": "152a162333e46d24f9d89f566312fc0c64011dee",
     "/layers.ef6db8722c2c3f9a.png": "c9e7528e491a39232ba24a2706c6c739d6fb0f06",
     "/main.adabcae9f2c8f5e8.js": "1b43bffc104a82ff7cd393425a39625037e77bb8",
-    "/manifest.webmanifest": "d2b850f4a2a5bd6773aefdd4979c3eaffa5f3d76",
+    "/manifest.webmanifest": "859e80b1e62ed8af123954a5345caffc0e14278d",
     "/marker-icon.d577052aa271e13f.png": "60a90bcbb2b42b7ddb4556db94eb7c1084b0e5da",
     "/polyfills.867fc05a361a1a12.js": "14c16218439284ea77d85b071eb23a142c0ee4ef",
     "/runtime.c33839c3a250e0bf.js": "5a0c581715c709b84cac5639cf122e8f991393b9",
