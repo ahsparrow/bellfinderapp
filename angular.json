@@ -111,7 +111,9 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "cname": "bellfinder.uk"
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
