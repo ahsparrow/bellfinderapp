@@ -30,6 +30,7 @@ export class SidenavComponent implements OnChanges {
   unringable = false;
   weight = 0;
   practice = "";
+  britishIslesOnly = false;
 
   autozoom = true;
 
@@ -65,7 +66,8 @@ export class SidenavComponent implements OnChanges {
 
     // Filter...
     const filt = this.makeFilter(this.place, this.county, this.bells,
-                               this.unringable, this.weight, this.practice);
+                                 this.unringable, this.weight, this.practice,
+                                 this.britishIslesOnly);
     towers = towers.filter(filt);
 
     this.searchEvent.emit({towers: towers, autozoom: this.autozoom});
@@ -79,7 +81,8 @@ export class SidenavComponent implements OnChanges {
 
   // Create filter function
   makeFilter(place: string, county: string, bells: number,
-             unringable: boolean, weight: number, practice: string) {
+             unringable: boolean, weight: number, practice: string,
+             britishIslesOnly: boolean) {
 
     return function(tower: Tower): boolean {
       return (place === "" ||
@@ -88,7 +91,8 @@ export class SidenavComponent implements OnChanges {
              (tower.bells >= bells) &&
              (unringable || !tower.unringable) &&
              (tower.weight >= weight * 112) &&
-             (practice === "" || tower.practice.includes(practice));
+             (practice === "" || tower.practice.includes(practice)) &&
+             (!britishIslesOnly || ["GB", "GG", "IE", "IM", "JE"].includes(tower.iso3166));
     };
   }
 
@@ -103,6 +107,7 @@ export class SidenavComponent implements OnChanges {
     this.unringable = false;
     this.weight = 0;
     this.practice = "";
+    this.britishIslesOnly = false;
 
     this.searchUpdate();
   }

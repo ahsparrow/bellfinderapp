@@ -15,16 +15,6 @@
     </button>
   </mat-form-field>
 
-  <!-- County -->
-  <mat-form-field fxFlex class="search-row">
-    <mat-label>County:</mat-label>
-    <mat-select [(ngModel)]="county" (selectionChange)="searchUpdate()">
-      <mat-option *ngFor="let county of countyList" [value]="county">
-        {{county}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
   <!-- Number of bells and ringable/unringable -->
   <div fxFlex fxLayout fxLayoutGap="8px" class="search-row">
     <mat-form-field fxFlex="0 0 60px">
@@ -65,6 +55,19 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+
+  <!-- County -->
+  <mat-form-field fxFlex class="search-row">
+    <mat-label>County:</mat-label>
+    <mat-select [(ngModel)]="county" (selectionChange)="searchUpdate()">
+      <mat-option *ngFor="let county of countyList" [value]="county"> {{county}}
+    </mat-option> </mat-select>
+  </mat-form-field>
+
+  <!-- Restrict to British Isle -->
+  <mat-checkbox [(ngModel)]="britishIslesOnly" (change)="searchUpdate()" class="search-row">
+    British Isles only
+  </mat-checkbox>
 
   <button fxFlex class="clear-button" mat-raised-button color="primary" (click)="clearAll()">Clear All</button>
 

@@ -13,6 +13,7 @@ export type Tower = {
   weight: number;
   unringable: boolean;
   practice: string;
+  iso3166: string;
 }
 
 @Injectable({
