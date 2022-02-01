@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   mapButtonEvent(event: string): void {
     if (event === "search")
-      this.sidenavOpened = true;
+      this.sidenavOpened = !this.sidenavOpened;
   }
 
   closeEvent() {
