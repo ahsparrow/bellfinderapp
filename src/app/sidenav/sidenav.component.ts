@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges,
          Output } from '@angular/core';
 import { Tower } from '../dove.service';
 import { SearchResult } from '../app.component';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidenav',
@@ -33,6 +34,9 @@ export class SidenavComponent implements OnChanges {
   britishIslesOnly = false;
 
   autozoom = true;
+
+  // "Cancel" icons
+  faTimes = faTimes;
 
   // Tower data is updated
   ngOnChanges(): void {
