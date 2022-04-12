@@ -75,7 +75,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
     const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       minZoom: 3,
-      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="https://dove.cccbr.org.uk/downloads.php">Dove</a>'
     });
     tiles.addTo(this.map);
 
