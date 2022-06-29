@@ -31,7 +31,7 @@ export class SidenavComponent implements OnChanges {
   unringable = false;
   weight = 0;
   practice = "";
-  britishIslesOnly = false;
+  britishIslesOnly = true;
 
   autozoom = true;
 
