@@ -4,6 +4,6 @@
 
 .tower-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: fit-content(0) auto;
   grid-column-gap: 8px;
 }
