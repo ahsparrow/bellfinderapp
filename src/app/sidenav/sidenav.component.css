@@ -1,15 +1,30 @@
 .search-div {
+  display: grid;
+  grid-template-columns: 200px;
+
   padding: 8px;
 }
 
-.search-row {
-  width: 200px;
+.title-div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+.bells-div {
+  display: grid;
+  grid-template-columns: 4em minmax(0, auto);
+  column-gap: 8px;
+}
+
+h2 {
+  margin: 0;
 }
 
 h3 {
-  margin: 0 0 8px;
+  margin: 8px 0 0;
 }
 
 .clear-button {
-  margin: 8px 0 8px;
+  margin: 8px 0;
 }

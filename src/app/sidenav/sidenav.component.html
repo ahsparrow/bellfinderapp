@@ -1,23 +1,23 @@
-<div class="search-div" fxLayout="column">
-  <div fxFlex fxLayout="row" fxLayoutAlign="start baseline">
-    <h2 fxFlex="grow">Search</h2>
-    <button fxFlex="none" mat-icon-button (click)="close()">
+<div class="search-div">
+  <div class="title-div">
+    <h2>Search</h2>
+    <button mat-icon-button (click)="close()">
       <fa-icon [icon]="faTimes" size="lg"></fa-icon>
     </button>
   </div>
 
   <!-- Place name -->
-  <mat-form-field fxFlex class="search-row">
+  <mat-form-field>
     <mat-label>Place:</mat-label>
-    <input fxFlex matInput [(ngModel)]="place" (input)="searchUpdate()" input="text">
-    <button fxFlex *ngIf="place" matSuffix mat-icon-button (click)="clearPlace()">
+    <input matInput [(ngModel)]="place" (input)="searchUpdate()" input="text">
+    <button *ngIf="place" matSuffix mat-icon-button (click)="clearPlace()">
       <fa-icon [icon]="faTimes"></fa-icon>
     </button>
   </mat-form-field>
 
   <!-- Number of bells and ringable/unringable -->
-  <div fxFlex fxLayout fxLayoutGap="8px" class="search-row">
-    <mat-form-field fxFlex="0 0 60px">
+  <div class="bells-div">
+    <mat-form-field>
       <mat-label>Bells:</mat-label>
       <mat-select [(ngModel)]="bells" (selectionChange)="searchUpdate()">
         <mat-option *ngFor="let bells of bellsList" [value]="bells">
@@ -26,7 +26,7 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field fxFlex="1 0 60px">
+    <mat-form-field>
       <mat-label>Unringable:</mat-label>
       <mat-select [(ngModel)]="unringable" (selectionChange)="searchUpdate()">
         <mat-option *ngFor="let unringable of unringableList" [value]="unringable">
@@ -37,7 +37,7 @@
   </div>
 
   <!-- Tenor weight -->
-  <mat-form-field fxFlex class="search-row">
+  <mat-form-field>
     <mat-label>Weight:</mat-label>
     <mat-select [(ngModel)]="weight" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let weight of weightList" [value]="weight">
@@ -47,7 +47,7 @@
   </mat-form-field>
 
   <!-- Practice night -->
-  <mat-form-field fxFlex class="search-row">
+  <mat-form-field>
     <mat-label>Practice:</mat-label>
     <mat-select [(ngModel)]="practice" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let practice of practiceList" [value]="practice">
@@ -57,7 +57,7 @@
   </mat-form-field>
 
   <!-- County -->
-  <mat-form-field fxFlex class="search-row">
+  <mat-form-field>
     <mat-label>County:</mat-label>
     <mat-select [(ngModel)]="county" (selectionChange)="searchUpdate()">
       <mat-option *ngFor="let county of countyList" [value]="county"> {{county}}
@@ -65,15 +65,15 @@
   </mat-form-field>
 
   <!-- Restrict to British Isle -->
-  <mat-checkbox [(ngModel)]="britishIslesOnly" (change)="searchUpdate()" class="search-row">
+  <mat-checkbox [(ngModel)]="britishIslesOnly" (change)="searchUpdate()">
     British Isles only
   </mat-checkbox>
 
-  <button fxFlex class="clear-button" mat-raised-button color="primary" (click)="clearAll()">Clear All</button>
+  <button class="clear-button" mat-raised-button color="primary" (click)="clearAll()">Clear All</button>
 
-  <h3 fxFlex>Settings:</h3>
+  <h3>Settings:</h3>
 
-  <mat-checkbox fxFlex [(ngModel)]="autozoom" (change)="searchUpdate()">
+  <mat-checkbox [(ngModel)]="autozoom" (change)="searchUpdate()">
     Auto zoom
   </mat-checkbox>
 
