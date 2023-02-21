@@ -11,7 +11,7 @@
     <mat-label>Place:</mat-label>
     <input matInput [(ngModel)]="place" (input)="searchUpdate()" input="text">
     <button *ngIf="place" matSuffix mat-icon-button (click)="clearPlace()">
-      <fa-icon [icon]="faTimes"></fa-icon>
+      <fa-icon [icon]="faTimes" size="xs"></fa-icon>
     </button>
   </mat-form-field>
 
