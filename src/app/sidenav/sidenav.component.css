@@ -1,6 +1,6 @@
 .search-div {
   display: grid;
-  grid-template-columns: 200px;
+  grid-template-columns: 250px;
 
   padding: 8px;
 }
@@ -13,7 +13,7 @@
 
 .bells-div {
   display: grid;
-  grid-template-columns: 4em minmax(0, auto);
+  grid-template-columns: 6em minmax(0, auto);
   column-gap: 8px;
 }
 
