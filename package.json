@@ -30,7 +30,6 @@
     "leaflet-easybutton": "^2.4.0",
     "leaflet.markercluster": "^1.5.3",
     "rxjs": "~6.6.0",
-    "source-map-explorer": "^2.5.3",
     "tslib": "^2.5.0",
     "zone.js": "^0.11.8"
   },
