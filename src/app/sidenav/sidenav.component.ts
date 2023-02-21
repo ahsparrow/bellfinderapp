@@ -90,7 +90,7 @@ export class SidenavComponent implements OnChanges {
 
     return function(tower: Tower): boolean {
       return (place === "" ||
-              tower.place.toLowerCase().startsWith(place.toLowerCase())) &&
+              tower.place.toLowerCase().search(place.toLowerCase()) != -1) &&
              (county === "" || county === tower.county) &&
              (tower.bells >= bells) &&
              (unringable || !tower.unringable) &&
